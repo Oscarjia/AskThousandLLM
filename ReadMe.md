@@ -9,3 +9,9 @@
 #### [千问LLM之四：LLM Transformer 架构：Encoder](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483943&idx=1&sn=60da33acc8a3499d74d24e891e5d955f&chksm=eb552324dc22aa329bc6f9fce1b241b1d08412418e3930aec17d854e1409e03b2c3fff6f53b6&token=1316523041&lang=zh_CN#rd)
 
 #### [千问LLM之五：LLM Transformer 架构：Decoder ](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483943&idx=2&sn=f689e3ff6cc400971b275e8c93c6baba&chksm=eb552324dc22aa32ca5f03f86440b58eaecf96ac2875975e5849df50955cc0657bd23b0bfbf2&token=1316523041&lang=zh_CN#rd)
+#### [千问LLM之六：LLM 生成式 GPT  ](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483957&idx=1&sn=0313d3316914a93c8bcb6ef2b653cf77&chksm=eb552336dc22aa20e482c6fc0f7a8a81c248e45a1accc7202295748654500beef974fe86ac0c&token=1127561406&lang=zh_CN&poc_token=HC_9OWejuFDn9f8xKKcjUyi8R2xJ0rxsKpdzt9fe)
+
+#### [千问LLM之七：LLM 之 BERT ](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483957&idx=2&sn=f0ee665c58fe580edd77caacca15546e&chksm=eb552336dc22aa2002ca3354b75037051de854ac571f62caaf434fd0bb9c328c2369e3de79ed&token=1127561406&lang=zh_CN#rd)
+#### [千问LLM之八：LLM 之 AutoRegressive and MLM ](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483964&idx=1&sn=64cc26bdc6c215535fe2486f2fb27b8c&chksm=eb55233fdc22aa29d4538b1eb16b2ff04fe4a3c12f7c2209d54e50537269427babc643486335&token=1127561406&lang=zh_CN#rd)
+#### [千问LLM之九：LLM 之 幻觉 hallucination ](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483964&idx=2&sn=84037d171d7a842d7afd0e82f7475568&chksm=eb55233fdc22aa29f656085ae26b3494566ede8f4817f3ecabc88e550da4596b270121cad1a6&token=1127561406&lang=zh_CN#rd)
+#### [千问LLM之十：Transformer 解决了RNN的哪些问题？](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483964&idx=3&sn=464de4c2071e12ab41b8019ee48b84ea&chksm=eb55233fdc22aa29fa82f7ade31b13e007f82379e706925d132a84aff372ebfbc58ed2f6d3fa&token=1127561406&lang=zh_CN#rd)
