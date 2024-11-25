@@ -17,4 +17,9 @@
 #### [千问LLM之十：Transformer 解决了RNN的哪些问题？](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483964&idx=3&sn=464de4c2071e12ab41b8019ee48b84ea&chksm=eb55233fdc22aa29fa82f7ade31b13e007f82379e706925d132a84aff372ebfbc58ed2f6d3fa&token=1127561406&lang=zh_CN#rd)
 #### [千问LLM之十一：LLM之什么是 Diffusion Model 扩散模型？](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483964&idx=4&sn=78b8fc9d967f2f8b1cf2a11cb146c4c2&chksm=eb55233fdc22aa29f3ba0736a68a8477976f9d94291261e382f8418c84e8d5a2c21451e80b73&token=1127561406&lang=zh_CN#rd)
 #### [千问LLM之十二：什么是梯度爆炸？](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483964&idx=5&sn=c4159126bb6eda148d135b3f20411b4c&chksm=eb55233fdc22aa29f80739780a32837f3e136dcd745e74c49763e4bc4c0eee1d49223120bc7f&token=1127561406&lang=zh_CN#rd)
+#### [千问LLM之十三：Sequence 2 Sequence 模型和Transformer模型有什么根本差别？ ](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483974&idx=1&sn=e100a0bd03ffffe145eddb9f1122ca29&chksm=eb552345dc22aa53d09b888a78cccab720a91e6a5e5bb541f7e1aad96e0668ebb8a2033cde3f&token=246431861&lang=zh_CN#rd)
 #### [千问LLM之十四：什么是LoRA ](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483969&idx=1&sn=374dda0ab4c1c6d0b142e4ae8dc0b038&chksm=eb552342dc22aa54cec97b2bc9eedb0faa7520d1b8beb516f33046ef9e425e45c822697f50e6&token=1127561406&lang=zh_CN#rd)
+
+#### [千问LLM之十五：什么是QLoRA？ ](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483982&idx=1&sn=a319867c62f1d0a81a62f8755f232e29&chksm=eb55234ddc22aa5bb72c953a3101f5ca3f4906359f1c18840ae9a175f8756f209afd520b29d9&token=246431861&lang=zh_CN#rd)
+
+#### [千问LLM之十六：开源模型文件里面通常包含哪些内容？可以逆向推出模型的训练脚本吗？ ](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483982&idx=2&sn=28bfed8b451f77c264197ffcd392bac7&chksm=eb55234ddc22aa5ba830ea83f86c02b8d11ceefe98c04fba60e021a7f9ad3a72cc25ad352a0f&token=246431861&lang=zh_CN#rd)
