@@ -23,3 +23,17 @@
 #### [千问LLM之十五：什么是QLoRA？ ](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483982&idx=1&sn=a319867c62f1d0a81a62f8755f232e29&chksm=eb55234ddc22aa5bb72c953a3101f5ca3f4906359f1c18840ae9a175f8756f209afd520b29d9&token=246431861&lang=zh_CN#rd)
 
 #### [千问LLM之十六：开源模型文件里面通常包含哪些内容？可以逆向推出模型的训练脚本吗？ ](https://mp.weixin.qq.com/s?__biz=MzI3ODYwNzk4MA==&mid=2247483982&idx=2&sn=28bfed8b451f77c264197ffcd392bac7&chksm=eb55234ddc22aa5ba830ea83f86c02b8d11ceefe98c04fba60e021a7f9ad3a72cc25ad352a0f&token=246431861&lang=zh_CN#rd)
+
+#### [千问LLM之十七：什么是 word2vector ? ](https://mp.weixin.qq.com/s/z1R_R4PsV0GqCgA8rCR8kA?token=332088811&lang=zh_CN)
+
+
+#### [千问LLM之十八：何谓损失函数？如何设计损失函数？LLM 损失函数长啥样？ ](https://mp.weixin.qq.com/s/wOx_4HBe52Mply56HmLHRw?token=332088811&lang=zh_CN)
+
+
+#### [ 千问LLM之十九：为啥GPT-4 Tokenize 中文的某些词语为 UNK 但是它的中文输出却感觉挺好的？ ](https://mp.weixin.qq.com/s/rfE-hkcAWB9VOWL74Un7Sg?token=332088811&lang=zh_CN)
+
+#### [千问LLM之二十：什么是CNN卷积模型？](https://mp.weixin.qq.com/s/ozjqB0qixntbpqdB7vP7Ug?token=332088811&lang=zh_CN)
+
+#### [千问LLM之二十一：什么是MultiModal多模态模型？ ](https://mp.weixin.qq.com/s/b9h2HtpcdzDx5Vtt49ljcQ?token=332088811&lang=zh_CN)
+
+#### [千问LLM之二十二：到底谁才是LLM训练的真正幕后英雄？ ](https://mp.weixin.qq.com/s/fIO-EXAqM4EH6hC4mbhN_Q?token=332088811&lang=zh_CN)
