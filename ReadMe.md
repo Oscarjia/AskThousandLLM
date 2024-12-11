@@ -37,3 +37,21 @@
 #### [千问LLM之二十一：什么是MultiModal多模态模型？ ](https://mp.weixin.qq.com/s/b9h2HtpcdzDx5Vtt49ljcQ?token=332088811&lang=zh_CN)
 
 #### [千问LLM之二十二：到底谁才是LLM训练的真正幕后英雄？ ](https://mp.weixin.qq.com/s/fIO-EXAqM4EH6hC4mbhN_Q?token=332088811&lang=zh_CN)
+
+
+#### [千问LLM之二十三：自动微分：让梯度跳起优雅的广场舞  ](https://mp.weixin.qq.com/s/kiY7u52Af1Ym69nt8jNgEA?token=853525989&lang=zh_CN)
+
+
+#### [千问LLM之二十四：什么是UNET？](https://mp.weixin.qq.com/s/w3OZkQkejXiqPdFQQsn09w?token=853525989&lang=zh_CN)
+
+
+#### [千问LLM之二十五：你猜AI界的“破案”扛把子会是谁？ ](https://mp.weixin.qq.com/s/2lF9grLbmdPaRO_g7Av4zQ?token=853525989&lang=zh_CN)
+
+#### [千千问LLM之二十六：“破案”扛把子是如何训练出来的？从所犯的错误中学习。 ](https://mp.weixin.qq.com/s/B3O1CZGRPEvmytia6OUYdg?token=853525989&lang=zh_CN)
+
+#### [千问LLM之二十七：三大AI助手的“奇葩说”：ChatGPT、KiMi和Claude的对决 ](https://mp.weixin.qq.com/s/9MkqzTRUJdkYC5Qlymug6w?token=853525989&lang=zh_CN)
+
+
+#### [千问LLM之二十八：什么是Batch Normalization？什么又是Layer Normalization？](https://mp.weixin.qq.com/s/IQbd5dirFaSqd7ZKgZkyIQ?token=853525989&lang=zh_CN)
+
+#### [千问LLM之二十九：什么是Pre-LayerNorm 和 Post-LayerNorm ？ ](https://mp.weixin.qq.com/s/Zf8WkxMNwQf7RfV1Zt_YJA?token=853525989&lang=zh_CN)
