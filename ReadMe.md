@@ -55,3 +55,19 @@
 #### [千问LLM之二十八：什么是Batch Normalization？什么又是Layer Normalization？](https://mp.weixin.qq.com/s/IQbd5dirFaSqd7ZKgZkyIQ?token=853525989&lang=zh_CN)
 
 #### [千问LLM之二十九：什么是Pre-LayerNorm 和 Post-LayerNorm ？ ](https://mp.weixin.qq.com/s/Zf8WkxMNwQf7RfV1Zt_YJA?token=853525989&lang=zh_CN)
+
+#### [千问LLM之三十：什么是Postion Encoding? ](https://mp.weixin.qq.com/s/ToE5cJ9wMSXbvZImHmcJSA?token=366761013&lang=zh_CN)
+
+#### [千问LLM之三十一：LLM的解码都有哪些方式?  ](https://mp.weixin.qq.com/s/GwLd9TDoYveL0rCgGRM5fg?token=366761013&lang=zh_CN)
+
+#### [千问LLM之三十二：AI界的“节食”计划 ](https://mp.weixin.qq.com/s/kZ0amTw0yFp388AmQ_9dVg)
+
+
+#### [千问LLM之三十三：什么是 Sharding? 之数据并行（Data Parallelism）](https://mp.weixin.qq.com/s/jaG_P2WMMOKWGrAs3kRyMg?token=366761013&lang=zh_CN)
+
+#### [千问LLM之三十四：什么是 Sharding? 之模型并行（Model Parallelism） ](https://mp.weixin.qq.com/s/S_-oTrgt3L0FWOgdOgbnsw?token=366761013&lang=zh_CN)
+
+
+#### [千问LLM之三十五：什么是 Sharding? 之ZeRO 优化（Zero Redundancy Optimizer） ](https://mp.weixin.qq.com/s/okUpNxiy1hrK1qX_GoIc0g?token=366761013&lang=zh_CN)
+
+#### [千问LLM之三十六：LLM的特工行动：工具召唤功能实战案例？Agent 到底是什么？ ](https://mp.weixin.qq.com/s/nWN3ExnpT3Ru4Os7_TMVPg?token=366761013&lang=zh_CN)
