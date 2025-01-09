@@ -71,3 +71,23 @@
 #### [千问LLM之三十五：什么是 Sharding? 之ZeRO 优化（Zero Redundancy Optimizer） ](https://mp.weixin.qq.com/s/okUpNxiy1hrK1qX_GoIc0g?token=366761013&lang=zh_CN)
 
 #### [千问LLM之三十六：LLM的特工行动：工具召唤功能实战案例？Agent 到底是什么？ ](https://mp.weixin.qq.com/s/nWN3ExnpT3Ru4Os7_TMVPg?token=366761013&lang=zh_CN)
+
+#### [千问LLM之三十八：在家也能养“大脑”：本地运行大型语言模型的奇妙之旅 ](https://mp.weixin.qq.com/s/Nbr8RB_SLdBtF4DCNmrTLA?token=1887796284&lang=zh_CN)
+
+#### [千问LLM之三十九：Resnet是如何计算梯度的 ](https://mp.weixin.qq.com/s/LDlnriyKZOTreU_SXVk10w?token=1887796284&lang=zh_CN)
+
+#### [千问LLM之四十：探索CLIP如何让机器理解图像和文字的奥秘 ](https://mp.weixin.qq.com/s/cg501rtVuUtFrspqQ1dZrg?token=1887796284&lang=zh_CN)
+
+#### [千问LLM之四十一：MoE 来自东方的神秘力量在国外被吵翻了](https://mp.weixin.qq.com/s/iG4Wy6nID6YVddh-hJyokw?token=1887796284&lang=zh_CN)
+
+#### [千问LLM之四十二：反卷积层：卷积神经网络的“时光倒流”魔法](https://mp.weixin.qq.com/s/uiMO2ka0KEc0cqg-Dg1DXQ?token=1887796284&lang=zh_CN)
+
+#### [千问LLM之四十三：Vision Transformer-让AI理解图片](https://mp.weixin.qq.com/s/cRkVcjfanhu19J9G07SvHw?token=1887796284&lang=zh_CN)
+
+#### [千问LLM之四十四：Visual Question Answering (VQA，看图说话) ](https://mp.weixin.qq.com/s/hxpOWTTHEJK0dCNZE_EsjQ?token=1887796284&lang=zh_CN)
+
+#### [千问LLM之四十五：Quantization in LLM(关于LLM 量化你必须知道的事) ](https://mp.weixin.qq.com/s/r3fT6bMNUnB8AEhsX60Kog?token=1887796284&lang=zh_CN)
+
+
+
+
