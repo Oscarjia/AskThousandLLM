@@ -89,5 +89,20 @@
 #### [千问LLM之四十五：Quantization in LLM(关于LLM 量化你必须知道的事) ](https://mp.weixin.qq.com/s/r3fT6bMNUnB8AEhsX60Kog?token=1887796284&lang=zh_CN)
 
 
+#### [千问LLM之四十六：每个人都是导演-Text to Video 文生视频 ](https://mp.weixin.qq.com/s/XHwFq-b3s23eDb8ELiPJRw?token=1412363201&lang=zh_CN)
+
+#### [千问LLM之四十七：CNN中的权重共享是什么意思？ ](https://mp.weixin.qq.com/s/B4_RBml_BlpPu61fDAZxfg?token=1412363201&lang=zh_CN)
+
+#### [千问LLM之四十八：什么是Adaptive Moment Estimation (Adam) 算法？你真的懂了吗？](https://mp.weixin.qq.com/s/aXUZGe80t-Di9cilpQYxmQ?token=1412363201&lang=zh_CN)
 
 
+#### [千问LLM之四十九：驯服“过拟合”巨兽：L2正则化，给模型加个紧箍咒 ](https://mp.weixin.qq.com/s/DXR1pEQjkihGT98m2A44iQ?token=1412363201&lang=zh_CN)
+
+#### [千问LLM之五十：揭秘自动驾驶背后的“空间想象力”之一 ](https://mp.weixin.qq.com/s/mLO3oB6sX-lPpRO_II2-ug?token=1412363201&lang=zh_CN)
+
+
+#### [千问LLM之五十一：揭秘自动驾驶背后的“空间想象力”之二  ](https://mp.weixin.qq.com/s/I9aXsR9l7iLpyEgwWB6tVw?token=1412363201&lang=zh_CN)
+
+#### [千问LLM之五十二：揭秘自动驾驶背后的“空间想象力”之三，把大模型都给整沮丧了 ](https://mp.weixin.qq.com/s/DmMfG2GTKg7NvJ9WXD2nnw?token=1412363201&lang=zh_CN)
+
+#### [千问LLM之五十三：揭秘 DeepSeek R1 背后的蒸馏 Distillation 技术，CloseAI 这次真急了。](https://mp.weixin.qq.com/s/brKLbES4NQWTg2wRUzKDoA?token=1412363201&lang=zh_CN)
