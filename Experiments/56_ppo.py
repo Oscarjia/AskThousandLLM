@@ -204,6 +204,8 @@ if __name__=='__main__':
         train_data,reward=rollout(model,env)
         ep_rewards.append(reward)
         #shuffle
+        # 这行代码的作用是对训练数据的索引进行 随机排列，以确保训练数据的顺序在每个训练周期（episode）内是 不同的，从而提升训练的随机性，防止模型过拟合到某个特定的顺序模式。
+        # train_data[0] 存储的是 观测数据（observations），它的长度等于本次 rollout（执行策略收集数据）中的步数 n_steps。
         permute_idxs=np.random.permutation(len(train_data[0]))
         # Data formatting
         obs=torch.tensor(train_data[0][permute_idxs],dtype=torch.float32,device=DEVICE)
