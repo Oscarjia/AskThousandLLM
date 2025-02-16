@@ -160,10 +160,13 @@ def discount_rewards(rewards,gamma=0.99):
     """
     Return discounted rewards based on the given rewards and gamma param
     """
+    # 最后一个直接获得折扣奖励。
     new_rewards=[float(rewards[-1])]
     for i in reversed(range(len(rewards)-1)):
+        #然后依次计算上一个的折扣奖励的值
         new_rewards.append(float(rewards[i])+gamma*new_rewards[-1])
-    return np.array(new_rewards[::-1])
+       
+    return np.array(new_rewards[::-1])  # 这行代码将折扣奖励的列表 new_rewards 从 最后一个奖励 到 第一个奖励 反转，并将其转化为 NumPy 数组返回。
 
 
 def calculate_gaes(rewards,values,gamma=0.99,decay=0.97):
@@ -210,6 +213,7 @@ if __name__=='__main__':
         # Data formatting
         obs=torch.tensor(train_data[0][permute_idxs],dtype=torch.float32,device=DEVICE)
         acts=torch.tensor(train_data[1][permute_idxs],dtype=torch.float32,device=DEVICE)
+        #GAE 初始值设置为Values
         gaes=torch.tensor(train_data[3][permute_idxs],dtype=torch.float32,device=DEVICE)
         act_log_probs=torch.tensor(train_data[4][permute_idxs],dtype=torch.float32,device=DEVICE)
 
