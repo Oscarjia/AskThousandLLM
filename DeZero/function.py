@@ -1,6 +1,6 @@
 from variable import Variable
 import numpy as np
-
+import weakref
 class Function:
     def __call__(self, *inputs):
         xs=[x.data for x in inputs]
@@ -9,11 +9,13 @@ class Function:
             ys=(ys,)
         outputs=[Variable(as_array(y)) for y in ys]
 
+        self.generation=max([x.generation for x in inputs])
+
         for output in outputs:
             output.set_creator(self)
 
         self.inputs=inputs #保存输入的变量
-        self.outputs=outputs
+        self.outputs=[weakref.ref(output) for output in outputs ]
 
         return outputs if len(outputs)>1 else outputs[0]
         
