@@ -1,6 +1,7 @@
 from variable import Variable
 import numpy as np
 import weakref
+from  config import Config
 class Function:
     def __call__(self, *inputs):
         xs=[x.data for x in inputs]
@@ -8,11 +9,12 @@ class Function:
         if not isinstance(ys,tuple):
             ys=(ys,)
         outputs=[Variable(as_array(y)) for y in ys]
-
-        self.generation=max([x.generation for x in inputs])
-
-        for output in outputs:
-            output.set_creator(self)
+        if Config.enable_backprop:
+            # 设置辈分
+            self.generation=max([x.generation for x in inputs])
+            # 设置连接
+            for output in outputs:
+                 output.set_creator(self)
 
         self.inputs=inputs #保存输入的变量
         self.outputs=[weakref.ref(output) for output in outputs ]

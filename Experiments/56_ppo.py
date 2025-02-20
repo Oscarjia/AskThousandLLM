@@ -60,6 +60,7 @@ class ActorCriticNetwork(nn.Module):
         return policy_logits,value
 
 class PPOTrainner():
+    
     def __init__(self,actor_critic,ppo_clip_val=0.2,target_kl_div=0.01,max_policy_train_iters=80,value_train_iters=80,policy_lr=3e-4,value_lr=1e-2):
         self.ac=actor_critic
         # 设定一个初始值，这个值用于控制更新的范围
@@ -188,7 +189,7 @@ if __name__=='__main__':
 
     model=model.to(DEVICE)
 
-    train_data,reward=rollout(model,env)
+    # train_data,reward=rollout(model,env)
 
     # print(np.array(train_data[0]).shape)
 
