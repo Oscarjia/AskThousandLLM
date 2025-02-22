@@ -103,6 +103,9 @@ class PPOTrainner():
                 break
 
     def train_value(self,obs,returns):
+        '''
+    
+        '''
         for _ in range(self.value_train_iters):
             self.value_optim.zero_grad()
             values=self.ac.value(obs)
@@ -171,6 +174,7 @@ def discount_rewards(rewards,gamma=0.99):
 
 
 def calculate_gaes(rewards,values,gamma=0.99,decay=0.97):
+    # [0] is appended to handle the terminal state (the last value is assumed to be zero).
     next_values=np.concatenate([values[1:],[0]])
     deltas=[rew+gamma*next_val-val for rew,val,next_val in zip(rewards,values,next_values)]
     gaes=[deltas[-1]]
@@ -222,6 +226,7 @@ if __name__=='__main__':
         returns=torch.tensor(returns,dtype=torch.float32,device=DEVICE)
 
         ppo.train_policy(obs,acts,act_log_probs,gaes)
+        # why need train value?
         ppo.train_value(obs,returns)
 
 
