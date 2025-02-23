@@ -6,7 +6,7 @@ and Use the code to finetune a LLM
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
-from torch import GradScaler, autocast, nn
+from torch import nn
 from torch import optim
 #Categorical用于模拟智能体做选择的过程
 from torch.distributions.categorical import Categorical
@@ -25,7 +25,7 @@ LAMBDA = 0.95
 KL_BETA = 0.1
 LR = 1e-6
 EPOCHS = 3
-TARGET_KL = 0.01
+
 class LLMPPO(nn.Module):
 
     def __init__(self,proxies):
@@ -43,58 +43,9 @@ class LLMPPO(nn.Module):
 
     def forward(self,input_ids,attention_mask=None):
         outputs=self.actor(input_ids,attention_mask=attention_mask,output_hidden_states=True)
-        # 获取所有token的隐藏状态 [batch, seq_len, dim]
-        all_hidden =outputs.hidden_states[-1]
-        # 计算每个位置的价值 [batch, seq_len]
-        values=self.critic(all_hidden).squeeze(-1)
-        return outputs.logits,values
-
-class RewardCalculator:
-    '''
-    design a reward calulator of a model.
-    '''
-
-    def __init__(self,tokenizer,reward_model=None):
-        self.tokenizer=tokenizer
-        self.reward_model=reward_model
-    
-    def __call__(self, sequences):
-        batch_rewards=[]
-        for seq in sequences:
-            #转换token 序列为文本
-            text=self.tokenizer.decode(seq,skip_special_tokens=True)
-            # 实际需要根据任务设计的奖励逻辑
-            # 示例1：基于规则
-            step_rewards=[]
-            for i in range(1,len(seq)):
-                partial_text=self.tokenizer.decode(seq[:i+1])
-                reward=self._rule_based_reward(partial_text)
-                step_rewards.append(reward)
-            
-            # 示例二：使用奖励模型
-            if self.reward_model:
-                with torch.no_grad():
-                    inputs=self.tokenizer(text,return_tensors='pt').to(DEVICE)
-                    reward=self.reward_model(**inputs).logits.item()
-                step_rewards=[reward/len(seq)]*len(seq) # 平均分配
-            
-            batch_rewards.append(step_rewards)
-
-        return torch.tensor(batch_rewards,device=DEVICE)
-
-    def _rule_based_reward(self, text):
-        """示例规则奖励函数"""
-        reward = 0
-        # 鼓励长文本但惩罚冗余
-        reward += len(text) * 0.01
-        # 惩罚重复词
-        unique_words = len(set(text.split()))
-        reward += unique_words * 0.05
-        # 特殊关键词奖励
-        if "千问LLM" in text: reward += 0.5
-        return reward
-
-
+        last_hidden=outputs.hidden_states[-1][:,-1,:] # 取最后一个token的隐藏状态
+        value=self.critic(last_hidden)
+        return outputs.logits,value
 
 # 奖励函数
 def calculate_rewards(sequences,tokenizer):
@@ -125,25 +76,33 @@ def generate_rollout(model,tokenizer,prompt):
         top_k=50,
         pad_token_id=tokenizer.eos_token_id,
         return_dict_in_generate=True,
-        output_scores=True,  # 关键参数
         output_hidden_states=True
     )
-    # 计算对数概率
-    log_probs = []
-    for step, (scores, tokens) in enumerate(zip(generate_ids.scores, generate_ids.T)):
+    # 提取各时间步信息
+    log_probs=[]
+    values=[]
+    rewards=[]
+    # 获取模型输出的长度。
+    for t in range(1,generate_ids.sequences.shape[1]):
+        #获取历史序列
+        partial_seq=generate_ids.sequences[:,:t]
+        with torch.no_grad():
+            # 逐token计算 value
+            logits,value=model(partial_seq)
+            # why ?
+            dist=Categorical(logits=logits[:,-1,:])
+            token_prob=dist.log_prob(generate_ids.sequences[:,t])
+        log_probs.append(token_prob)
+        values.append(value.squeeze())
     
-    # 计算奖励
-    rewards = model.reward_calculator(seq.unsqueeze(0))[0]
-    
-    # 构建终止标记（示例：假设生成到最大长度时终止）
-    dones = torch.zeros(len(rewards), device=DEVICE)
-    dones[-1] = 1
-    
+    #计算最终奖励
+    final_rewards=calculate_rewards(generate_ids.sequences,tokenizer)
+
     return {
-        "sequences": seq.unsqueeze(0),
-        "log_probs": log_probs,
-        "rewards": rewards,
-        "dones": dones
+        "sequences":generate_ids.sequences,
+        "log_probs":torch.stack(log_probs),
+        "values":torch.stack(values),
+        "rewards":final_rewards.repeat(len(log_probs)) # 简单分配奖励
     }
 
 
@@ -151,18 +110,9 @@ class PPOTrainner():
     def __init__(self,model,tokenizer):
         self.model=model
         self.tokenizer=tokenizer
-        self.scaler=GradScaler()
-        self.reward_calculator=RewardCalculator(tokenizer)
-        self.kl_beta=KL_BETA
         self.optimizer=AdamW(filter(lambda p:p.requires_grad,model.parameters()),lr=LR)
 
     def compute_addvantages(self,rewards,values):
-        '''
-        计算GAE优势值
-        rewards: [seq_len]
-        values: [seq_len+1]
-        dones: [seq_len]
-        '''
         advantages=[]
         last_advantage=0
         for t in reversed(range(len(rewards))):
@@ -173,65 +123,6 @@ class PPOTrainner():
 
         return torch.stack(advantages)
     
-    def train_step(self,rollouts):
-        total_loss=0
-        self.optimizer.zero_grad()
-
-        for rollout in rollouts:
-            #解包数据
-            seq=rollout["sequences"]
-            old_log_probs=rollout["log_probs"]
-            rewards=rollout["rewards"]
-            dones=rollout["dones"]
-
-            #前向计算
-            with autocast():
-                logits,values=self.model(seq[:,:-1])# 排除最后一个预测
-                values=values.squeeze()
-
-                #计算新策略概率
-                dist=Categorical(logits=logits)
-                new_log_probs=dist.log_prob(seq[:,1:])
-
-                # 计算优势
-                advantages = self.compute_addvantages(rewards, values)
-                advantages = (advantages - advantages.mean()) / (advantages.std() + 1e-8)
-                
-                # PPO 损失
-                ratios=torch.exp(new_log_probs-old_log_probs)
-                clipped_ratios=torch.clamp(ratios,1-PPO_CLIP,1+PPO_CLIP)
-                policy_loss=-torch.min(ratios*advantages,clipped_ratios*advantages)
-
-                #价值损失
-                value_loss=0.5*(values[:-1]-rewards).pow(2).mean()
-
-                #KL 散度惩罚
-
-                kl_div=(old_log_probs-new_log_probs).mean()
-                kl_penalty=self.kl_beta*kl_div
-
-                #总损失
-                loss=policy_loss+value_loss+kl_penalty
-
-                total_loss+=loss/len(rollouts)
-            #梯度累积
-            self.scaler.scale(loss).backward()
-
-        # 梯度裁剪和参数更新
-        self.scaler.unscale_(self.optimizer)
-        torch.nn.utils.clip_grad_norm_(self.model.parameters(), 1.0)
-        self.scaler.step(self.optimizer)
-        self.scaler.update()
-        
-        # 动态调整KL系数
-        if kl_div > 1.5 * TARGET_KL:
-            self.kl_beta *= 2
-        elif kl_div < TARGET_KL / 1.5:
-            self.kl_beta /= 2
-        
-        return total_loss.item()
-
-
     def update(self,rollouts):
         all_losses=[]
         for _ in range(EPOCHS):
@@ -303,7 +194,7 @@ if __name__=='__main__':
         rollouts=[generate_rollout(model,tokenizer,"Human: ") for _ in range(BATCH_SIZE)]
 
         #参数更新
-        avg_loss=trainer.train_step(rollouts)
+        avg_loss=trainer.update(rollouts)
 
         #监控训练过程
         if epoch % 5==0:
@@ -312,14 +203,4 @@ if __name__=='__main__':
 
     
 
-#
-# Epoch 0 | Loss: 29.402 |Avg Reward: 0.170
-# Epoch 5 | Loss: 24.997 |Avg Reward: 0.180
-# Epoch 10 | Loss: 18.031 |Avg Reward: 0.190
-# Epoch 15 | Loss: 16.673 |Avg Reward: 0.190
-# Epoch 20 | Loss: 20.196 |Avg Reward: 0.170
-# Epoch 25 | Loss: 25.567 |Avg Reward: 0.130
-# Epoch 30 | Loss: 38.930 |Avg Reward: 0.170
-# Epoch 35 | Loss: 18.160 |Avg Reward: 0.210
-# Epoch 40 | Loss: 21.719 |Avg Reward: 0.190
-# Epoch 45 | Loss: 25.167 |Avg Reward: 0.210
+    
