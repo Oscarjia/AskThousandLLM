@@ -2,6 +2,9 @@
 '''
 Here is example python code of PPO:Proximal Policy Optimization 
 and Use the code to finetune a LLM
+
+Core Package
+pip install transformers==4.49.0 torch==2.5.1 flash_attn==2.7.4.post1
 '''
 import matplotlib.pyplot as plt
 import numpy as np
