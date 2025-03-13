@@ -1,5 +1,5 @@
 import numpy as np
-
+from mul_function import mul
 class Variable:
     def __init__(self,data,name=None):
         if data is not None:
@@ -67,4 +67,7 @@ class Variable:
             return 'variable(None)'
         p=str(self.data).replace('\n','\n'+' '*9)
         return 'variable('+p+')'
+    
+    def __mul__(self,other):
+        return mul(self,other)
         
