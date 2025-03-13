@@ -186,7 +186,7 @@ def load_model_from_checkpoint(path,device):
 if __name__ == '__main__':
 
     # Load data from csv
-    data=pd.read_csv("/Users/oneway/work/public_github/AskThousandLLM/Experiments/train.minist.csv")
+    data=pd.read_csv("AskThousandLLM/Experiments/train.minist.csv")
     val_count=1000
     #common transformation for both val and  train
     default_transform=transforms.Compose(
