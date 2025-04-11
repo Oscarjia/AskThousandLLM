@@ -1,0 +1,25 @@
+syntax="proto3";
+
+package llmservice;
+
+// LLM 服务接口定义
+service LLMService{
+    // 单论对话，输入prompt，返回 reply
+    rpc Generate(GenerateRequest) returns (GenerateResponse) {}
+    // 支持流式返回，用于token-by-token 生成
+    rpc StreamGenerate(GenerateRequest) returns (stream GenerateResponse) {}
+}
+
+// 输入消息格式
+message GenerateRequest{
+    string prompt=1; // 用户输入
+    int32 max_tokens=2;//最大返回token数目
+    float temperature=3; // 随机程度（0.0 - 1.0）
+    repeated string history=4; // 多轮历史对话（可选）
+    map<string,string> metadata=5; // 可扩展字段，比如模型ID、用户ID等
+}
+// 输出消息格式
+message GenerateResponse{
+    string reply=1;  // 模型生成的文本结果
+    bool is_final = 2;  // 标识是否是最终输出（流式生成时用）
+}
