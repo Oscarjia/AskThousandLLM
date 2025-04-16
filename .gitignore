@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+*.pyo
+
+# Virtualenv
+env/
+venv/
+ENV/
+.venv/
+.env/
+.Python
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+local_settings.py
+*.mo
+
+# Django migrations
+**/migrations/
+!**/migrations/__init__.py
+
+# VSCode / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# dotenv (e.g. secrets)
+.env
+.env.*
+
+# coverage / testing
+.coverage
+htmlcov/
+coverage.xml
+nosetests.xml
+test.db
+pytest_cache/
+.tox/
+
+# Build artifacts
+build/
+dist/
+*.tgz
+*.tar.gz
+*.egg-info/
+*.whl
+
+# Node/npm (if using Tailwind or front-end tooling)
+node_modules/
+*.lock
+package-lock.json
+yarn.lock
+
+# Docker
+*.pid
+docker-compose.override.yml
+

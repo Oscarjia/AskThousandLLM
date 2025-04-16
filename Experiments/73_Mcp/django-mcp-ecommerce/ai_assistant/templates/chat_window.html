@@ -1,0 +1,451 @@
+<!-- ai_assistant/templates/ai_assistant/chat_window.html -->
+<!-- This file will be included via JavaScript, not directly -->
+<style>
+    /* static/css/ai_assistant.css */
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.7);
+}
+
+/* Smooth transitions */
+.ai-assistant-transition {
+  transition: all 0.3s ease;
+}
+
+/* Markdown content styles */
+.ai-prose {
+  max-width: none;
+  color: #e5e7eb; /* text-gray-200 */
+}
+
+.ai-prose p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.ai-prose code {
+  color: #e5e7eb;
+  background-color: rgba(31, 41, 55, 0.5);
+  padding: 0.2em 0.4em;
+  border-radius: 0.375rem;
+  font-size: 0.875em;
+}
+
+.ai-prose pre {
+  background-color: rgba(31, 41, 55, 0.5);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1.25em 0;
+  overflow-x: auto;
+}
+
+.ai-prose h1, .ai-prose h2, .ai-prose h3, .ai-prose h4 {
+  color: #f9fafb; /* text-gray-50 */
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.ai-prose ul, .ai-prose ol {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+}
+
+.ai-prose ul {
+  list-style-type: disc;
+}
+
+.ai-prose ol {
+  list-style-type: decimal;
+}
+
+.ai-prose li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.ai-prose blockquote {
+  border-left: 4px solid #f97316; /* orange-500 */
+  background-color: rgba(249, 115, 22, 0.1);
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 0.5rem;
+}
+
+.ai-prose a {
+  color: #f97316; /* orange-500 */
+  text-decoration: underline;
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.2em;
+}
+
+.ai-prose a:hover {
+  color: #fb923c; /* orange-400 */
+}
+
+.ai-prose strong {
+  color: #f9fafb;
+  font-weight: 600;
+}
+
+.ai-prose em {
+  font-style: italic;
+}
+</style>
+<script>
+// static/js/ai_assistant.js
+document.addEventListener('DOMContentLoaded', function() {
+  // Get the AI assistant elements
+  const aiAssistantLink = document.querySelector('a[href="#"][textContent*="Ai-Assistent"]');
+  const aiAssistantContainer = document.getElementById('ai-assistant-container');
+  
+  // If elements don't exist yet, create the AI assistant container
+  if (!aiAssistantContainer) {
+    createAIAssistantContainer();
+  }
+  
+  // Function to create the AI assistant container dynamically
+  function createAIAssistantContainer() {
+    const container = document.createElement('div');
+    container.id = 'ai-assistant-container';
+    container.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center';
+    
+    container.innerHTML = `
+      <div class="w-[700px] h-[600px] bg-gray-900 rounded-lg shadow-xl border border-orange-500/20 flex flex-col">
+        <div class="flex items-center justify-between p-3 border-b border-orange-500/20">
+          <h3 class="font-semibold text-white">AI Assistant - 千万LLM智能助手</h3>
+          <button id="close-ai-assistant" class="text-gray-400 hover:text-white transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+        </div>
+
+        <div id="ai-messages-container" class="flex-1 overflow-y-auto">
+          <div class="flex-1 flex items-center justify-center text-gray-400 text-sm">
+            Ask me anything! I'm here to help.
+          </div>
+        </div>
+
+        <div class="p-3 border-t border-orange-500/20">
+          <form id="ai-chat-form">
+            <div class="relative">
+              <textarea
+                id="ai-input"
+                placeholder="Type your message..."
+                class="w-full rounded-lg border border-orange-500/20 bg-gray-800/50 pl-3 pr-10 py-2 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-transparent resize-none overflow-hidden"
+                rows="1"
+                style="min-height: 36px; max-height: 120px;"
+              ></textarea>
+              <button
+                type="submit"
+                id="ai-submit-button"
+                class="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-orange-500 hover:text-orange-400 disabled:text-gray-500 transition-colors focus:outline-none"
+                disabled
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(container);
+    setupAIAssistantEventListeners();
+  }
+
+  // Set up event listeners for the AI assistant
+  function setupAIAssistantEventListeners() {
+    // Updated selector to find the AI assistant link
+    const aiAssistantLinks = document.querySelectorAll('a');
+    let aiAssistantLink = null;
+    
+    for (const link of aiAssistantLinks) {
+      if (link.textContent.includes('Ai-Assistent') || link.textContent.includes('LLM智能助手')) {
+        aiAssistantLink = link;
+        break;
+      }
+    }
+    
+    const aiAssistantContainer = document.getElementById('ai-assistant-container');
+    const closeButton = document.getElementById('close-ai-assistant');
+    const form = document.getElementById('ai-chat-form');
+    const input = document.getElementById('ai-input');
+    const submitButton = document.getElementById('ai-submit-button');
+    const messagesContainer = document.getElementById('ai-messages-container');
+    
+    // Store messages
+    const messages = [];
+    
+    // Toggle AI assistant visibility
+    if (aiAssistantLink) {
+      aiAssistantLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        aiAssistantContainer.classList.remove('hidden');
+        aiAssistantContainer.style.display = 'flex';
+        input.focus();
+      });
+    }
+    
+    // Close AI assistant
+    closeButton.addEventListener('click', function() {
+      aiAssistantContainer.classList.add('hidden');
+      aiAssistantContainer.style.display = 'none';
+    });
+    
+    // Handle input changes
+    input.addEventListener('input', function() {
+      // Auto-resize textarea
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+      
+      // Enable/disable submit button based on input
+      submitButton.disabled = !this.value.trim();
+    });
+    
+    // Handle Enter key
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey && this.value.trim()) {
+        e.preventDefault();
+        form.dispatchEvent(new Event('submit'));
+      }
+    });
+    
+    // Handle form submission
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const userMessage = input.value.trim();
+      if (!userMessage) return;
+      
+      // Add user message to UI
+      addMessage('user', userMessage);
+      
+      // Clear input
+      input.value = '';
+      input.style.height = 'auto';
+      submitButton.disabled = true;
+      
+      // Send message to backend
+      sendMessageToBackend(userMessage);
+    });
+    
+    // Function to add a message to the UI
+    function addMessage(role, content) {
+      // Clear the initial message if this is the first message
+      if (messages.length === 0) {
+        messagesContainer.innerHTML = '';
+      }
+      
+      // Create message ID
+      const id = Date.now().toString();
+      
+      // Add message to array
+      messages.push({ id, role, content });
+      
+      // Create message element
+      const messageEl = document.createElement('div');
+      messageEl.className = `py-3 ${role === 'assistant' ? 'bg-gradient-to-r from-orange-500/5 to-red-600/5' : 'bg-transparent'}`;
+      
+      // Create message content
+      messageEl.innerHTML = `
+        <div class="flex items-start gap-2 px-4">
+          ${role === 'assistant' ? `
+            <div class="w-6 h-6 rounded-lg bg-gradient-to-r from-orange-500 to-red-600 flex items-center justify-center text-xs font-medium text-white flex-shrink-0">
+              AI
+            </div>
+          ` : `
+            <div class="w-6 h-6 rounded-lg bg-gray-700 flex items-center justify-center text-xs font-medium text-white flex-shrink-0">
+              Y
+            </div>
+          `}
+          <div class="flex-1 min-w-0 ai-prose">
+            ${formatMessage(content)}
+          </div>
+        </div>
+      `;
+      
+      // Add message to container
+      messagesContainer.appendChild(messageEl);
+      
+      // Scroll to bottom
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+    
+    // Function to format message with markdown-like styling
+    function formatMessage(text) {
+      // Simple formatting for now (could be enhanced with a proper markdown parser)
+      return text
+        .replace(/\n/g, '<br>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>');
+    }
+    
+    // Function to send message to backend
+    function sendMessageToBackend(userMessage) {
+      // Show loading state
+      const loadingId = showLoadingMessage();
+      
+      // Get CSRF token
+      const csrfToken = getCsrfToken();
+      
+      // Convert messages to format expected by backend
+      const apiMessages = messages.map(msg => ({
+        role: msg.role,
+        content: msg.content
+      }));
+      
+      // Send to backend
+      fetch('/ai-assistant/generate/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken
+        },
+        body: JSON.stringify({
+          messages: apiMessages
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Remove loading message
+        removeLoadingMessage(loadingId);
+        
+        // Add response to UI
+        addMessage('assistant', data.content);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        
+        // Remove loading message
+        removeLoadingMessage(loadingId);
+        
+        // Show error message
+        addMessage('assistant', 'Sorry, I encountered an error. Please try again.');
+      });
+    }
+    
+    // Function to show loading message
+    function showLoadingMessage() {
+      // Clear the initial message if this is the first message
+      if (messages.length === 1) { // Only user message present
+        messagesContainer.innerHTML = '';
+      }
+      
+      // Create loading message element
+      const loadingId = 'loading-' + Date.now();
+      const loadingEl = document.createElement('div');
+      loadingEl.id = loadingId;
+      loadingEl.className = 'py-3 bg-gradient-to-r from-orange-500/5 to-red-600/5';
+      
+      // Create loading content
+      loadingEl.innerHTML = `
+        <div class="flex items-start gap-2 px-4">
+          <div class="w-6 h-6 rounded-lg bg-gradient-to-r from-orange-500 to-red-600 flex items-center justify-center text-xs font-medium text-white flex-shrink-0">
+            AI
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-1">
+              <div class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></div>
+              <div class="w-2 h-2 rounded-full bg-orange-500 animate-pulse" style="animation-delay: 0.2s"></div>
+              <div class="w-2 h-2 rounded-full bg-orange-500 animate-pulse" style="animation-delay: 0.4s"></div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      // Add loading message to container
+      messagesContainer.appendChild(loadingEl);
+      
+      // Scroll to bottom
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      
+      return loadingId;
+    }
+    
+    // Function to remove loading message
+    function removeLoadingMessage(id) {
+      const loadingEl = document.getElementById(id);
+      if (loadingEl) {
+        loadingEl.remove();
+      }
+    }
+    
+    // Function to get CSRF token
+    function getCsrfToken() {
+      const cookies = document.cookie.split(';');
+      for (let cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name === 'csrftoken') {
+          return value;
+        }
+      }
+      return '';
+    }
+  }
+  
+  // Initialize AI assistant if the link exists
+  if (document.querySelector('a[href="#"]')) {
+    setupAIAssistantEventListeners();
+  }
+});
+
+
+</script>
+
+<div id="ai-assistant-container" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+    <div class="w-[700px] h-[600px] bg-gray-900 rounded-lg shadow-xl border border-orange-500/20 flex flex-col">
+      <div class="flex items-center justify-between p-3 border-b border-orange-500/20">
+        <h3 class="font-semibold text-white">AI Assistant - 千万LLM智能助手</h3>
+        <button id="close-ai-assistant" class="text-gray-400 hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+  
+      <div id="ai-messages-container" class="flex-1 overflow-y-auto">
+        <div class="flex-1 flex items-center justify-center text-gray-400 text-sm">
+          Ask me anything! I'm here to help.
+        </div>
+      </div>
+  
+      <div class="p-3 border-t border-orange-500/20">
+        <form id="ai-chat-form">
+          <div class="relative">
+            <textarea
+              id="ai-input"
+              placeholder="Type your message..."
+              class="w-full rounded-lg border border-orange-500/20 bg-gray-800/50 pl-3 pr-10 py-2 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-transparent resize-none overflow-hidden"
+              rows="1"
+              style="min-height: 36px; max-height: 120px;"
+            ></textarea>
+            <button
+              type="submit"
+              id="ai-submit-button"
+              class="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-orange-500 hover:text-orange-400 disabled:text-gray-500 transition-colors focus:outline-none"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-white mb-8">Our Products</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for product in products %}
+        <div class="rounded-lg overflow-hidden border border-orange-500/20 bg-gray-800/50">
+            <div class="aspect-[4/3] relative overflow-hidden">
+                <img src="{{ product.image_url }}" alt="{{ product.name }}" 
+                     class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+                <h3 class="text-lg font-semibold text-white mb-2">{{ product.name }}</h3>
+                <p class="text-sm text-gray-300 mb-3 line-clamp-2">
+                    {{ product.description }}
+                </p>
+                <div class="flex items-center justify-between">
+                    <div class="text-lg font-bold text-emerald-400">
+                        ${{ product.price }}
+                    </div>
+                    <a href="{% url 'ui:product_detail' product.id %}" 
+                       class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-1.5 rounded-lg text-sm hover:opacity-90 transition-opacity">
+                        View Details
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

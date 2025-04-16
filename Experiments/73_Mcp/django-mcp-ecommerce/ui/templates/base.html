@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}千问LLM之MCP Ecommerce{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="bg-gray-900 border-b border-orange-500/20">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <a href="{% url 'ui:product_list' %}" class="text-xl font-bold text-white">
+                    千问LLM之MCP Ecommerce
+                </a>
+                <div class="flex items-center space-x-4">
+                    <a href="{% url 'ui:product_list' %}" class="text-gray-300 hover:text-white">Products</a>
+                    <a href="#" class="text-gray-300 hover:text-white">Cart</a>
+                    <a href="#" class="text-gray-300 hover:text-white">Ai-Assistent-千万LLM智能助手</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="bg-gray-900 border-t border-orange-500/20 mt-8">
+        <div class="container mx-auto px-4 py-6">
+            <p class="text-center text-gray-400">© 2024 千问LLM之MCP Ecommerce. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html> 
