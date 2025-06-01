@@ -106,3 +106,35 @@
 #### [千问LLM之五十二：揭秘自动驾驶背后的“空间想象力”之三，把大模型都给整沮丧了 ](https://mp.weixin.qq.com/s/DmMfG2GTKg7NvJ9WXD2nnw?token=1412363201&lang=zh_CN)
 
 #### [千问LLM之五十三：揭秘 DeepSeek R1 背后的蒸馏 Distillation 技术，CloseAI 这次真急了。](https://mp.weixin.qq.com/s/brKLbES4NQWTg2wRUzKDoA?token=1412363201&lang=zh_CN)
+#### [千问LLM之五十四：揭秘 DeepSeek R1 背后的强化学习 RL 技术-群组相关策略优化之一](https://mp.weixin.qq.com/s/00ATzbylZNIOuxr6uKlQNw)
+#### [千问LLM之五十五：揭秘 DeepSeek R1 背后的强化学习 RL 技术-群组相关策略优化之二](https://mp.weixin.qq.com/s/p6rUe79FO0ukj6fokihkiA)
+#### [千问LLM之五十六：揭秘 DeepSeek R1 背后的强化学习 RL 技术-群组相关策略优化之三](https://mp.weixin.qq.com/s/FvvHPRrcj4Yef0stOTv_ew)
+#### [千问LLM之五十七：揭秘 DeepSeek R1 背后的强化学习 RL 技术-群组相关策略优化之四：改造PPO 适应 LLM训练](https://mp.weixin.qq.com/s/zqj4kD55gyXfGmv5HugavA)
+
+
+#### [千问LLM之五十八：手写 Multi-head Self-Attention (MHA)（多头注意力）以及 BERT 训练等](https://mp.weixin.qq.com/s/mgF2ZqsRwHzW8dZDYlkzOg)
+#### [千问LLM之五十九：如何对 LLM 进行加速推理和训练](https://mp.weixin.qq.com/s/MQoXJ2nTiVsp6dhcTzur-A)
+#### [千问LLM之六十：手写多模态的核心技术：对比图片学习（CIP）到对比图片文本学习（CLIP）过程。](https://mp.weixin.qq.com/s/IJp7yI9p3vEJn9OTH9ezpA)
+#### [千问LLM之六十一：LLM推理与训练加速：从注意力机制到 PagedAttention vLLM](https://mp.weixin.qq.com/s/tT_2F-GwXBp_cePe2v4BSA)
+#### [千问LLM之六十二：LLM推理与训练加速：细粒度 batching](https://mp.weixin.qq.com/s/D4eHGoH0V34vBkjPLpie4A)
+#### [千问LLM之六十三：RoPE：旋转位置嵌入，语言模型的旋转密码](https://mp.weixin.qq.com/s/nsh_NlZWTOvbqPe-3pIgEA)
+#### [千问LLM之六十四：FlashAttention 核心技术](https://mp.weixin.qq.com/s/PaElNvXr7EcIkE6xjKwvOg)
+#### [千问LLM之六十五：我们一起读 vLLM 源码](https://mp.weixin.qq.com/s/mXsdAYd0PKEATuF2j_1Jdw)
+#### [千问LLM之六十六：谁做到了让NVIDIA“倒掉GPU牛奶”？DeepSeek MoE](https://mp.weixin.qq.com/s/I-5yavVlAel_V8062f2inQ)
+
+#### [千问LLM之六十七：为支持RAG，文档有多少种拆分方法？](https://mp.weixin.qq.com/s/MYIRp9mM_YMjHyC7UJg8ng)
+#### [千问LLM之六十八：什么是 AI Agent ？](https://mp.weixin.qq.com/s/lvMxKt5xCFO6uUcKDFyKhw)
+
+
+#### [千问LLM之六十九：训练一个超大参数的 LLM 需要哪些技术](https://mp.weixin.qq.com/s/ayjkI2auzLkVUUFmI9YUCA)
+#### [千问LLM之七十：介绍一个很容易编写GPU内核的项目：Triton。](https://mp.weixin.qq.com/s/mHDa_qrwdj8FatU5McjohQ)
+#### [千问LLM之七十一：评估 LLM 推理性能的指标有哪些？](https://mp.weixin.qq.com/s/tJZvX5bwMKw2c71v8Urlkg)
+#### [千问LLM之七十二：如何构建一个能扛住千万级用户的LLM模型调用服务？](https://mp.weixin.qq.com/s/Ifk5DeAtOfr40Q_WC0DUqg)
+#### [千问LLM之七十三：通过类比学习 PPO、GRPO 和 DPO 算法](https://mp.weixin.qq.com/s/sW78_9dKR7QgpC4dHosNGw)
+#### [千问LLM之七十三：通过类比学习 PPO、GRPO 和 DPO 算法](https://mp.weixin.qq.com/s/sW78_9dKR7QgpC4dHosNGw)
+#### [千问LLM之七十四：Model Context Protocol (MCP) 的前传： Function Calling](https://mp.weixin.qq.com/s/pvHU6WA-ZJrccMd1Y_C0Qw)
+#### [千问LLM之七十五：Model Context Protocol (MCP) 的真身，看完这篇你能拍着胸脯说：MCP，我懂啦！](https://mp.weixin.qq.com/s/euOsZGgm-2iqssgJyq9w_A)
+#### [千问LLM之七十六：「AI 电商实战」：构建基于 MCP 协议的智能购物系统](https://mp.weixin.qq.com/s/22AJLN8RmwSGZtjoFRjvYQ)
+#### [千问LLM之七十七：训练数据是怎样送进LLM的？nanoGPT 带你看懂 LLM 输入机制](https://mp.weixin.qq.com/s/L5OknIUnkOnkPXHCg2doxQ)
+#### [千问LLM之七十八：你以为 LLM 乱猜？其实它心里有数（Attention）](https://mp.weixin.qq.com/s/j2KsT0_G9_v-vL0DQWluoA)
+#### [千问LLM之七十九：GPT 训练时要 Mask，推理时也需要吗？）](https://mp.weixin.qq.com/s/ZrLdL7voIV75Nf9V5r1f-Q)
