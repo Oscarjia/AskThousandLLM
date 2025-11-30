@@ -1,11 +1,18 @@
-from variable import Variable
 import numpy as np
 import weakref
-from  config import Config
+
+try:
+    from .variable import Variable
+    from .config import Config
+except ImportError:  # pragma: no cover - fallback for direct script usage
+    from variable import Variable
+    from config import Config
 
 
 class Function:
+
     def __call__(self, *inputs):
+        inputs=[as_variable(x) for x in inputs]
         xs=[x.data for x in inputs]
         ys=self.forward(*xs)
         if not isinstance(ys,tuple):
@@ -46,9 +53,20 @@ class Exp(Function):
         y=np.exp(x)
         return y
     def backward(self, gy):
-        x=self.input.data
+        x=self.inputs[0].data
         gx=np.exp(x)*gy
         return gx
+
+class Mul(Function):
+    def forward(self, x0, x1):
+        return x0 * x1
+
+    def backward(self, gy):
+        x0 = self.inputs[0].data
+        x1 = self.inputs[1].data
+        gx0 = gy * x1
+        gx1 = gy * x0
+        return gx0, gx1
     
 def square(x):
     f=Square()
@@ -57,6 +75,12 @@ def square(x):
 def exp(x):
     f=Exp()
     return f(x)
+
+def mul(x0, x1):
+    x0 = as_variable(x0)
+    x1 = as_variable(x1)
+    f = Mul()
+    return f(x0, x1)
 
 
     
@@ -72,3 +96,13 @@ def as_array(x):
     if np.isscalar(x):
         return np.array(x)
     return x
+
+def as_variable(x):
+    if isinstance(x, Variable):
+        return x
+    return Variable(as_array(x))
+
+def as_variable(obj):
+    if isinstance(obj,Variable):
+        return obj
+    return Variable(as_array(obj))
